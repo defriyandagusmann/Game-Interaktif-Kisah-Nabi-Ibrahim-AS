@@ -185,15 +185,25 @@ function startGame() {
 
     // Coba putar musik secara otomatis
     el.bgMusic.volume = 0.3; // Volume yang tidak mengganggu
-    el.bgMusic.play().then(() => {
-        isMusicPlaying = true;
-        el.musicToggle.innerHTML = '<i class="ti ti-volume"></i>';
-    }).catch(e => {
-        // Jika browser memblokir autoplay
-        isMusicPlaying = false;
-        el.musicToggle.innerHTML = '<i class="ti ti-volume-3"></i>';
-        console.log("Autoplay dicegah oleh browser. Pengguna harus menyalakan manual.");
-    });
+    
+    const startMusic = () => {
+        el.bgMusic.currentTime = 60; // Mulai dari menit 1:00
+        el.bgMusic.play().then(() => {
+            isMusicPlaying = true;
+            el.musicToggle.innerHTML = '<i class="ti ti-volume"></i>';
+        }).catch(e => {
+            // Jika browser memblokir autoplay
+            isMusicPlaying = false;
+            el.musicToggle.innerHTML = '<i class="ti ti-volume-3"></i>';
+            console.log("Autoplay dicegah oleh browser. Pengguna harus menyalakan manual.");
+        });
+    };
+
+    if (el.bgMusic.readyState >= 1) { // 1 = HAVE_METADATA
+        startMusic();
+    } else {
+        el.bgMusic.addEventListener('loadedmetadata', startMusic, { once: true });
+    }
 }
 
 function toggleMusic() {
