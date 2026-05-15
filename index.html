@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perjalanan Ibrahim AS - Interaktif</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="stars"></div>
+
+    <audio id="bg-music" loop>
+        <source src="backsound.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="game-container" id="app">
+
+        <!-- Top HUD (Hidden initially) -->
+        <div class="hud" id="hud" style="display: none;">
+            <div class="hud-episode" id="hud-ep-title">
+                <i class="ti ti-bookmark"></i>
+                <span>Episode 1</span>
+            </div>
+            <div class="progress-container" id="progress-dots">
+                <!-- Dots will be generated here -->
+            </div>
+            <button class="music-toggle" id="music-toggle" onclick="toggleMusic()" title="Nyalakan/Matikan Musik">
+                <i class="ti ti-volume"></i>
+            </button>
+        </div>
+
+        <!-- Intro Screen -->
+        <div class="screen intro-screen active" id="screen-intro">
+            <div class="hero-icon">🌙</div>
+            <h1 class="title">Perjalanan Ibrahim AS</h1>
+            <h2 class="subtitle">Media Pembelajaran Interaktif PAI</h2>
+            <p class="desc">Ikuti perjalanan hidup Nabi Ibrahim AS — dari menentang berhala, dibakar api Namrud, hingga
+                ujian terbesar bersama putranya Ismail. Setiap pilihan yang kamu buat akan mengajarkanmu nilai-nilai
+                kehidupan.</p>
+
+            <button class="btn" onclick="startGame()">
+                <i class="ti ti-player-play-filled"></i> Mulai Petualangan
+            </button>
+        </div>
+
+        <!-- Gameplay Screen -->
+        <div class="screen" id="screen-game">
+            <div class="scene-header">
+                <div class="scene-icon" id="scene-icon">🏠</div>
+                <h2 class="scene-title" id="scene-title">Keluarga Ibrahim</h2>
+            </div>
+
+            <div class="narrative-box" id="scene-narasi">
+                Ibrahim kecil tumbuh di kota Ur, Babylonia...
+            </div>
+
+            <div class="value-box" id="scene-nilai">
+                <i class="ti ti-leaf"></i>
+                <div class="value-text">Nilai: Sejak kecil Ibrahim selalu berpikir kritis.</div>
+            </div>
+
+            <div class="choices-label">Apa yang akan Ibrahim lakukan?</div>
+            <div class="choices-container" id="choices-container">
+                <!-- Choices generated here -->
+            </div>
+
+            <div class="feedback-box" id="feedback-box">
+                <!-- Feedback injected here -->
+            </div>
+
+            <div class="next-action" id="next-action">
+                <button class="btn" id="btn-next" onclick="nextStep()">
+                    Lanjut <i class="ti ti-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- End Screen -->
+        <div class="screen end-screen" id="screen-end">
+            <div class="hero-icon"
+                style="font-size: 4.5rem; filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.4)); animation: none;">🏅
+            </div>
+            <h1 class="title" style="font-size: 2rem;">Alhamdulillah!</h1>
+            <p class="desc" style="margin-bottom: 1rem;">Kamu telah menyelesaikan seluruh perjalanan Nabi Ibrahim AS dan
+                memetik hikmah dari kisah beliau.</p>
+
+            <div class="lessons-grid" id="lessons-container">
+                <!-- Lessons generated here -->
+            </div>
+
+            <button class="btn btn-outline" onclick="location.reload()">
+                <i class="ti ti-refresh"></i> Ulangi Perjalanan
+            </button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
